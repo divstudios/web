@@ -1,0 +1,336 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+    <title>DIV STUDIOS</title>
+    <link rel="icon" type="image/png" href="favicon.png">
+    <meta name="description" content="WEB DEVELOPEMENT"/>
+    <meta name="keywords" content="web, developement, coding, UI/UX, hosting, software, programming, design, marketing, internet, apps, android, PWA, games">
+        
+    <style>
+        body, html {
+            user-select: none;
+            -webkit-tap-highlight-color: transparent;
+            -webkit-overflow-scrolling: touch;
+            overflow: hidden;
+            margin: 0;
+            padding: 0;
+            font-family: Arial, sans-serif;
+            background-color: white;
+        }
+
+        .page {
+            width: 100vw;
+            height: 100vh;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            font-size: 2em;
+            position: absolute;
+            transition: transform 1.1s ease;
+        }
+
+        .white {
+            background-color: white;
+            color: black;
+            white-space: nowrap;
+        }
+        .about {
+            background-color: lightgray;
+            transform: translateY(-100%);
+            color: white;
+        }
+        .contact {
+            background-color: lightblue;
+            transform: translateY(100%);
+            color: white;
+        }
+        .us {
+            background-color: lightgreen;
+            transform: translateX(-100%);
+            color: white;
+        }
+        .them {
+            background-color: lightcoral;
+            transform: translateX(100%);
+            color: white;
+        }
+
+        .burger-menu {
+            position: absolute;
+            top: 5%;
+            right: 33px;
+            cursor: pointer;
+            z-index: 1000;
+            opacity: 0.5;
+            transition: 1.1s ease;
+        }
+
+.burger-menu:hover {
+    opacity: 1;
+}
+
+        .bar {
+            width: 30px;
+            height: 4px;
+            background-color: grey;
+            margin: 6px 0;
+            transition: 2.2s ease;
+            border-radius: 10px;
+        }
+        .change .bar {
+            border-radius: 10px;
+            transform: rotate(-45deg) translate(-5px, 5px);
+        }
+
+.menu-items {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    gap: 22px;
+    position: fixed;
+    top: 6.5%;
+    left: 44px;
+    z-index: 999;
+    visibility: hidden;
+    transition: 0.3s;
+}
+
+.menu-items a {
+    display: block;
+    margin-bottom: 8px;
+    text-decoration: none;
+    color: grey;
+    font-size: 22px;
+    opacity: 0.3;
+    transition: opacity 1.1s;
+}
+
+.menu-items a:hover {
+    opacity: 1;
+}
+
+.DIVSTUDIOS {
+    transition: opacity 1.1s;
+}
+
+.DIVSTUDIOS:hover {
+}
+
+@media (max-width: 888px) {
+    .menu-items {
+        flex-direction: column;
+        position: absolute;
+        left: 10%;
+        top: 20%;
+        gap: 44px;
+        font-size:66px;
+        animation: scroll 9s cubic-bezier(0.1, 1, 1, 0.1) infinite;
+    }
+
+.menu-items a {
+    display: block;
+    margin-bottom: 8px;
+    text-decoration: none;
+    color: grey;
+    opacity: 0.5;
+    font-size: 44px;
+    font-weight: bold;
+    transition: opacity 1.1s;
+}
+
+        @keyframes scroll {
+            0% {
+    opacity: 0;
+                transform: translateY(222%);
+            }
+            100% {
+    opacity: 1;
+                transform: translateY(-222%);
+            }
+        }
+
+        .page {
+            width: 100vw;
+            height: 100vh;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            font-size: 2em;
+            position: absolute;
+            transition: transform 1.1s ease;
+        }
+
+        .white {
+            background-color: white;
+            color: black;
+            white-space: nowrap;
+        }
+
+.DIVSTUDIOS {
+        position: absolute;
+    bottom: 11%;
+    left: 50%;
+transform: translateX(-50%);
+}
+
+    </style>
+</head>
+<body>
+
+    <audio id="click-sound1" src="click1.mp3" preload="auto"></audio>
+    <audio id="click-sound2" src="click2.mp3" preload="auto"></audio>
+    <div class="burger-menu" onclick="toggleMenu();  resetStyles();">
+        <div class="bar"></div>
+        <div class="bar"></div>
+        <div class="bar"></div>
+    </div>
+</div>
+<div class="menu-items">
+    <a data-target="about" onclick="movePagesUp(); movePagesUp(); toggleMenu();">ABOUT</a>
+    <a data-target="contact" onclick="movePagesDown(); movePagesDown(); toggleMenu();">CONTACT</a>
+    <a data-target="clients" onclick="movePagesRight(); movePagesRight(); toggleMenu();">CLIENTS</a>
+    <a data-target="projects" onclick="movePagesLeft(); movePagesLeft(); toggleMenu();">PROJECTS</a>
+    <a data-target="jobs" onclick="movePagesDown(); movePagesDown(); toggleMenu();">JOBS</a>
+</div>
+
+<div class="page white" id="toggleDiv">
+    <div class="content">
+        <span class="DIVSTUDIOS" onclick="darkmode()">
+            <span style="font-weight: bold;">&lt;/DIV&gt;&nbsp;</span> 
+            <span class="text">STUDIOS</span>
+        </span>
+    </div>
+</div>
+
+
+    <div class="page about">ABOUT</div>
+    <div class="page contact">CONTACT</div>
+    <div class="page us">US</div>
+    <div class="page them">THEM</div>
+
+    <script>
+
+        function handleClick1() {
+            var audio1 = document.getElementById('click-sound1');
+audio1.currentTime = 0;
+            audio1.play();
+        }
+        function handleClick2() {
+            var audio2 = document.getElementById('click-sound2');
+audio2.currentTime = 0;
+            audio2.play();
+        }
+
+function darkmode() {
+    var body = document.body;
+
+    if (body.style.backgroundColor === 'white' || body.style.backgroundColor === '') {
+handleClick1();
+        body.style.backgroundColor = 'black';
+        document.querySelectorAll('.white').forEach(function(item) {
+            item.style.color = 'white';
+            item.style.backgroundColor = 'black';
+        });
+    } else {
+handleClick2();
+        body.style.backgroundColor = 'white';
+        document.querySelectorAll('.white').forEach(function(item) {
+            item.style.color = 'black';
+            item.style.backgroundColor = 'white';
+        });
+    }
+}
+
+
+
+
+
+document.addEventListener('touchmove', function(event) {
+    event.preventDefault();
+}, { passive: false });
+
+
+
+        let aboutTranslateY = -100;
+        let contactTranslateY = 100;
+        let usTranslateX = -100;
+        let themTranslateX = 100;
+
+        const aboutPage = document.querySelector('.about');
+        const contactPage = document.querySelector('.contact');
+        const usPage = document.querySelector('.us');
+        const themPage = document.querySelector('.them');
+
+        function movePagesUp() {
+            aboutTranslateY = clamp(aboutTranslateY + 100, -200, 0);
+            contactTranslateY = clamp(contactTranslateY + 100, 0, 200);
+            aboutPage.style.transform = `translateY(${aboutTranslateY}%)`;
+            contactPage.style.transform = `translateY(${contactTranslateY}%)`;
+        }
+
+        function movePagesDown() {
+            aboutTranslateY = clamp(aboutTranslateY - 100, -200, 0);
+            contactTranslateY = clamp(contactTranslateY - 100, 0, 200);
+            aboutPage.style.transform = `translateY(${aboutTranslateY}%)`;
+            contactPage.style.transform = `translateY(${contactTranslateY}%)`;
+        }
+
+        function movePagesLeft() {
+            usTranslateX = clamp(usTranslateX + 100, -200, 0);
+            themTranslateX = clamp(themTranslateX + 100, 0, 200);
+            usPage.style.transform = `translateX(${usTranslateX}%)`;
+            themPage.style.transform = `translateX(${themTranslateX}%)`;
+        }
+
+        function movePagesRight() {
+            usTranslateX = clamp(usTranslateX - 100, -200, 0);
+            themTranslateX = clamp(themTranslateX - 100, 0, 200);
+            usPage.style.transform = `translateX(${usTranslateX}%)`;
+            themPage.style.transform = `translateX(${themTranslateX}%)`;
+        }
+
+
+function resetStyles() {
+    const aboutPage = document.querySelector('.about');
+    const contactPage = document.querySelector('.contact');
+    const usPage = document.querySelector('.us');
+    const themPage = document.querySelector('.them');
+
+    aboutPage.style.transform = "translateY(-100%)";
+    contactPage.style.transform = "translateY(100%)";
+    usPage.style.transform = "translateX(-100%)";
+    themPage.style.transform = "translateX(100%)";
+
+}
+
+        function clamp(value, min, max) {
+            return Math.max(min, Math.min(value, max));
+        }
+
+        document.addEventListener('keydown', function(event) {
+            if (event.key === 'ArrowUp') {
+                resetStyles(); movePagesUp(); movePagesUp();
+            } else if (event.key === 'ArrowDown') {
+                resetStyles(); movePagesDown(); movePagesDown();
+            } else if (event.key === 'ArrowLeft') {
+                resetStyles(); movePagesLeft(); movePagesLeft();
+            } else if (event.key === 'ArrowRight') {
+                resetStyles(); movePagesRight(); movePagesRight();
+            }
+        });
+
+function toggleMenu() {
+    const menu = document.querySelector('.menu-items');
+    menu.style.visibility = menu.style.visibility === 'visible' ? 'hidden' : 'visible';
+   
+    
+    const burgerMenuIcon = document.querySelector('.burger-menu');
+    burgerMenuIcon.style.opacity = burgerMenuIcon.style.opacity === '0.6' ? '0.3' : '0.6';
+}
+
+
+    </script>
+</body>
+</html>
