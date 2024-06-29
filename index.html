@@ -103,7 +103,7 @@
     text-decoration: none;
     color: grey;
     font-size: 22px;
-    opacity: 0.3;
+    opacity: 0.5;
     transition: opacity 1.1s;
 }
 
@@ -112,11 +112,27 @@
 }
 
 .DIVSTUDIOS {
-    transition: opacity 1.1s;
+    animation: fadeInOut 6.6s infinite;
+}
+
+@keyframes fadeInOut {
+    0%, 100% {
+        opacity: 0.2;
+    }
+    50% {
+        opacity: 1;
+    }
 }
 
 .DIVSTUDIOS:hover {
+    opacity: 1 !important;
+    animation: none;
 }
+
+
+
+
+
 
 @media (max-width: 888px) {
     .menu-items {
@@ -174,6 +190,7 @@
     left: 50%;
 transform: translateX(-50%);
 }
+
 
     </style>
 </head>
