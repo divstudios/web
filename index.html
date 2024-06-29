@@ -215,7 +215,7 @@ transform: translateX(-50%);
 <div class="page white" id="toggleDiv">
     <div class="content">
         <span class="DIVSTUDIOS" onclick="darkmode()">
-            <span style="font-weight: bold;">&lt;/DIV&gt;&nbsp;</span> 
+            <span style="font-weight: bold;">&lt;/DiV&gt;&nbsp;</span> 
             <span class="text">STUDIOS</span>
         </span>
     </div>
@@ -347,37 +347,24 @@ function toggleMenu() {
     burgerMenuIcon.style.opacity = burgerMenuIcon.style.opacity === '0.6' ? '0.3' : '0.6';
 }
 
+// Function to detect swipe direction based on touch start and end positions
+function detectSwipeDirection(startX, startY, endX, endY) {
+    const deltaX = endX - startX;
+    const deltaY = endY - startY;
+    const absX = Math.abs(deltaX);
+    const absY = Math.abs(deltaY);
 
-// Variables to store touch start coordinates
-let touchStartX = 0;
-let touchStartY = 0;
+    // Set minimum distance threshold for swipe
+    if (Math.max(absX, absY) < 50) return; // Adjust this threshold as needed
 
-// Minimum distance (in pixels) to consider a swipe
-const swipeThreshold = 50;
-
-// Add touch event listeners
-document.addEventListener('touchstart', function(event) {
-    touchStartX = event.touches[0].clientX;
-    touchStartY = event.touches[0].clientY;
-});
-
-document.addEventListener('touchend', function(event) {
-    const touchEndX = event.changedTouches[0].clientX;
-    const touchEndY = event.changedTouches[0].clientY;
-
-    // Calculate swipe distance
-    const deltaX = touchEndX - touchStartX;
-    const deltaY = touchEndY - touchStartY;
-
-    // Determine swipe direction based on distance
-    if (Math.abs(deltaX) > Math.abs(deltaY)) {
+    if (absX > absY) {
         // Horizontal swipe
-        if (deltaX > swipeThreshold) {
+        if (deltaX > 0) {
             // Swipe right
             resetStyles();
             movePagesRight();
             movePagesRight();
-        } else if (deltaX < -swipeThreshold) {
+        } else {
             // Swipe left
             resetStyles();
             movePagesLeft();
@@ -385,21 +372,33 @@ document.addEventListener('touchend', function(event) {
         }
     } else {
         // Vertical swipe
-        if (deltaY > swipeThreshold) {
+        if (deltaY > 0) {
             // Swipe down
             resetStyles();
             movePagesDown();
             movePagesDown();
-        } else if (deltaY < -swipeThreshold) {
+        } else {
             // Swipe up
             resetStyles();
             movePagesUp();
             movePagesUp();
         }
     }
+}
+
+// Event listener for touch events to handle swipe gestures
+let startX, startY;
+
+document.addEventListener('touchstart', function(event) {
+    startX = event.touches[0].clientX;
+    startY = event.touches[0].clientY;
 });
 
-
+document.addEventListener('touchend', function(event) {
+    const endX = event.changedTouches[0].clientX;
+    const endY = event.changedTouches[0].clientY;
+    detectSwipeDirection(startX, startY, endX, endY);
+});
 
 
     </script>
