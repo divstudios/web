@@ -348,6 +348,60 @@ function toggleMenu() {
 }
 
 
+// Variables to store touch start coordinates
+let touchStartX = 0;
+let touchStartY = 0;
+
+// Minimum distance (in pixels) to consider a swipe
+const swipeThreshold = 50;
+
+// Add touch event listeners
+document.addEventListener('touchstart', function(event) {
+    touchStartX = event.touches[0].clientX;
+    touchStartY = event.touches[0].clientY;
+});
+
+document.addEventListener('touchend', function(event) {
+    const touchEndX = event.changedTouches[0].clientX;
+    const touchEndY = event.changedTouches[0].clientY;
+
+    // Calculate swipe distance
+    const deltaX = touchEndX - touchStartX;
+    const deltaY = touchEndY - touchStartY;
+
+    // Determine swipe direction based on distance
+    if (Math.abs(deltaX) > Math.abs(deltaY)) {
+        // Horizontal swipe
+        if (deltaX > swipeThreshold) {
+            // Swipe right
+            resetStyles();
+            movePagesRight();
+            movePagesRight();
+        } else if (deltaX < -swipeThreshold) {
+            // Swipe left
+            resetStyles();
+            movePagesLeft();
+            movePagesLeft();
+        }
+    } else {
+        // Vertical swipe
+        if (deltaY > swipeThreshold) {
+            // Swipe down
+            resetStyles();
+            movePagesDown();
+            movePagesDown();
+        } else if (deltaY < -swipeThreshold) {
+            // Swipe up
+            resetStyles();
+            movePagesUp();
+            movePagesUp();
+        }
+    }
+});
+
+
+
+
     </script>
 </body>
 </html>
